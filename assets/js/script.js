@@ -11,6 +11,10 @@ var quizEl = document.createElement("div");
 var buttonEl = document.createElement('button');
 // create Question list
 var Q1El = document.createElement('ol');
+var correct = document.createElement('p');
+correct.textContent = "Correct!";
+var incorrect = document.createElement('p');
+incorrect.textContent = "Incorrect! 15sec time penalty!";
 
 //Create ordered list items
 var Q1li1 = document.createElement("li");
@@ -18,6 +22,17 @@ var Q1li2 = document.createElement("li");
 var Q1li3 = document.createElement("li");
 var Q1li4 = document.createElement("li");
 
+// create Question list 2
+var Q2El = document.createElement('ol');
+
+//Create ordered list items
+var Q2li1 = document.createElement("li");
+var Q2li2 = document.createElement("li");
+var Q2li3 = document.createElement("li");
+var Q2li4 = document.createElement("li");
+
+
+//add question 1
 Q1El.textContent = "Commonly used data types DO NOT include:";
 //Add text for list items
 Q1li1.textContent = "Strings";
@@ -25,6 +40,13 @@ Q1li2.textContent = "Booleans";
 Q1li3.textContent = "Alerts";
 Q1li4.textContent = "Numbers";
 
+//add question 2
+Q2El.textContent = "The condition in an if/else statement is enclosed within ____.";
+//Add text for list items
+Q1li1.textContent = "Strings";
+Q1li2.textContent = "Booleans";
+Q1li3.textContent = "Alerts";
+Q1li4.textContent = "Numbers";
 //adds these elements to the body of HTML
 
 body.appendChild(h1El);
@@ -33,7 +55,7 @@ body.appendChild(buttonEl);
 
 
 //add question
-  function addQ(){
+function addQ(){
   setTime();
   body.removeChild(h1El);
   body.removeChild(quizEl);
@@ -43,25 +65,71 @@ body.appendChild(buttonEl);
   body.appendChild(Q1li2);
   body.appendChild(Q1li3);
   body.appendChild(Q1li4);
-  };
+  
+  Q1li3.addEventListener('click', function(){
+    body.appendChild(correct);
+  });
+  Q1li1.addEventListener('click', function(){
+    body.appendChild(incorrect);
+    decrementTime();
+  });
+  Q1li2.addEventListener('click', function(){
+    body.appendChild(incorrect);
+  });
+  Q1li4.addEventListener('click', function(){
+    body.appendChild(incorrect);
+  });
+};
+
+//add question 2
+function addQ2(){
+  body.removeChild(Q1El);
+  body.removeChild(Q1li1);
+  body.removeChild(Q1li2);
+  body.removeChild(Q1li3);
+  body.removeChild(Q1li4);
+  body.appendChild(Q2El);
+  // body.appendChild(Q1li1);
+  // body.appendChild(Q1li2);
+  // body.appendChild(Q1li3);
+  // body.appendChild(Q1li4);
+  // Q1li3.addEventListener("click", addQ2());  
+};
+
+
 
  //set timer
- function setTime() {
+function setTime() {
   // Sets interval in variable
   var timerInterval = setInterval(function() {
     secondsLeft--;
     timerEl.textContent = "Timer = " + secondsLeft + " seconds left.";
 
-    if(secondsLeft === 0) {
+  if(secondsLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
       // Calls function to create and append image
-      window.alert("Game over!");
+      window.confirm("Game over!"); 
     }
 
   }, 1000);
 }
 
+function decrementTime() {
+  // Sets interval in variable
+  var timerInterval = decrementInterval(function() {
+    secondsLeft - 15000;
+    timerEl.textContent = "Timer = " + secondsLeft + " seconds left.";
+
+  if(secondsLeft === 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // Calls function to create and append image
+      window.confirm("Game over!"); 
+    }
+
+  }, 1000);
+}
 
 // Sets the text in these elements
 h1El.textContent = "Coding Quiz Challenge";
