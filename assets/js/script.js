@@ -1,7 +1,7 @@
 //define elements
 var headerEl = document.header;
-var highEL = document.getElementById("highscores")
-var timerEl = document.querySelector("timer")
+var highEL = document.getElementById("highscores");
+var timerEl = document.querySelector("#timer");
 var secondsLeft = 75;
 var body = document.body;
 var main = document.main;
@@ -32,15 +32,9 @@ body.appendChild(quizEl);
 body.appendChild(buttonEl);
 
 
-// Attach the "click" event to your button
-buttonEl.addEventListener('click', (event) => {
-  // When there is a "click"
-  setTime();
-  addQ();
-  
-});
 //add question
   function addQ(){
+  setTime();
   body.removeChild(h1El);
   body.removeChild(quizEl);
   body.removeChild(buttonEl);
@@ -54,19 +48,20 @@ buttonEl.addEventListener('click', (event) => {
  //set timer
  function setTime() {
   // Sets interval in variable
-  var timerEl = setInterval(function() {
+  var timerInterval = setInterval(function() {
     secondsLeft--;
-    timerEl.textContent = secondsLeft + " seconds left.";
+    timerEl.textContent = "Timer = " + secondsLeft + " seconds left.";
 
     if(secondsLeft === 0) {
-      // Stops the game
+      // Stops execution of action at set interval
       clearInterval(timerInterval);
       // Calls function to create and append image
-      console.log("Game over!");
+      window.alert("Game over!");
     }
 
   }, 1000);
 }
+
 
 // Sets the text in these elements
 h1El.textContent = "Coding Quiz Challenge";
@@ -125,6 +120,9 @@ Q1li4.setAttribute("style", " list-style:decimal; text-align:left;color:black; b
 // listEl.appendChild(li4);
 
 
+// Attach the "click" event to your button
+buttonEl.addEventListener('click', (addQ));
 
+  // When there is a "click
 
 
