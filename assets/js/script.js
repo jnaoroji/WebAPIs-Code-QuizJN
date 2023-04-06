@@ -1,10 +1,6 @@
 //define elements
-var headerEl = document.header;
-var highEL = document.getElementById("highscores");
 var timerEl = document.querySelector("#timer");
-var secondsLeft = 75;
 var body = document.body;
-var main = document.main;
 var h1El = document.createElement("h1");
 var quizEl = document.createElement("div");
 // Create a button element
@@ -15,6 +11,8 @@ var correct = document.createElement('p');
 correct.textContent = "Correct!";
 var incorrect = document.createElement('p');
 incorrect.textContent = "Incorrect! 15sec time penalty!";
+var secondsLeft = 75;
+
 
 //Create ordered list items
 var Q1li1 = document.createElement("li");
@@ -71,13 +69,15 @@ function addQ(){
   });
   Q1li1.addEventListener('click', function(){
     body.appendChild(incorrect);
-    decrementTime();
+    secondsLeft = secondsLeft - 15;  
   });
   Q1li2.addEventListener('click', function(){
     body.appendChild(incorrect);
+    secondsLeft = secondsLeft - 15; 
   });
   Q1li4.addEventListener('click', function(){
     body.appendChild(incorrect);
+    secondsLeft = secondsLeft - 15; 
   });
 };
 
@@ -115,21 +115,7 @@ function setTime() {
   }, 1000);
 }
 
-function decrementTime() {
-  // Sets interval in variable
-  var timerInterval = decrementInterval(function() {
-    secondsLeft - 15000;
-    timerEl.textContent = "Timer = " + secondsLeft + " seconds left.";
 
-  if(secondsLeft === 0) {
-      // Stops execution of action at set interval
-      clearInterval(timerInterval);
-      // Calls function to create and append image
-      window.confirm("Game over!"); 
-    }
-
-  }, 1000);
-}
 
 // Sets the text in these elements
 h1El.textContent = "Coding Quiz Challenge";
