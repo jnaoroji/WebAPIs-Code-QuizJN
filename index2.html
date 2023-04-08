@@ -9,21 +9,21 @@
   </head>
 
   <body>
-    <div class="clearfix">
       <div class="card">
-        <h2>All Done!</h2>
+        <h2>Game Over!</h2>
+        <h3>Your Score is:</h3>
         <form method="POST">
           <div class="input-group">
-            <label for="password">Enter Initials:</label>
-            <input type="password" name="password" id="password" placeholder="supersecure123" />
+            <label for="initials">Enter Initials:</label>
+            <input type="text" name="initials" id="ini" placeholder="my initials" />
           </div>
-          <div id="msg"></div>
-          <button id="sign-up">Submit</button>
+         
+          <button id="submit">Submit</button>
         </form>
       </div>
-      <div class="card">
+      <div class="output">
         <h2>Highscores</h2>
-        <p><strong>Initials:</strong> <span id="user-password"></span></p>
+        <p><strong>Initials:</strong> <span id="user-initials"></span></p>
       </div>
     </div>
     
