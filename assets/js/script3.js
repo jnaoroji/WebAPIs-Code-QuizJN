@@ -1,19 +1,10 @@
-var userScore = document.querySelector("#timeleft")
-var initialsInput = document.querySelector("#ini");
-var userInitialsSpan = document.querySelector("#user-initials");
-
 
 
 userInitialsSpan.textContent = localStorage.getItem("initials", initialsInput);
 
-highscores();
+highscores(){
 
-
-
-
-function highscores() {
-  
-  var initials = localStorage.getItem("ini");
+  var initials = localStorage.getItem("initials");
   if (!initials) {
     return;
   }
@@ -31,18 +22,5 @@ function highscores() {
     highscores();
   }
 });
-
-
-
-//declare functions for local storage
-var userScore = document.querySelector("#timeleft")
-var userInitials = document.createElement("li");
-
-
-
-
-
-
-
 
 
