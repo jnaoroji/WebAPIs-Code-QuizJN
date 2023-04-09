@@ -368,11 +368,10 @@ function score() {
   divEl.appendChild(gameOver);
   divEl.appendChild(finalScore);
   divEl.appendChild(initialsInput);
+  
  
 };
   
-
-
 
 // Sets the text in these elements
 h1El.textContent = "Coding Quiz Challenge";
