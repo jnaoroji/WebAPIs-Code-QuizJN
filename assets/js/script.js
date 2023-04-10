@@ -22,6 +22,9 @@ var finalScore = document.createElement("h2");
 //create text area element
 var initialsInput = document.createElement("textarea");
 initialsInput.setAttribute("rows", "1");
+var HSlist = document.createElement ("ul");
+var highscores = [];
+var cardEl = document.querySelector("#card");
 
 const questions = [
     {
@@ -122,11 +125,11 @@ h1El.setAttribute("style", "font-size:25px; text-align:center;");
 quizEl.setAttribute("style", "font-size:16px; text-align:center;");
 buttonEl.setAttribute("style", "font-size:16px; text-align:center;");
 startQuizButton.setAttribute("style", "justify-content:center;");
-
+var timerInterval = "";
 //set timer
 function setTime() {
     // Sets interval in variable
-    var timerInterval = setInterval(function () {
+        timerInterval = setInterval(function () {
         secondsLeft--;
         timerEl.textContent = "Timer = " + secondsLeft + " seconds left.";
 
@@ -138,8 +141,13 @@ function setTime() {
         }
         
     }, 1000);
+    return;
 }
-
+// stop timer
+function stopTimer() {
+    clearInterval(timerInterval); // clear the interval to stop the timer
+    timerEl.textContent = "There is no time left.";
+  }
 
 function score() {
     divEl.append(gameOver);
@@ -148,7 +156,7 @@ function score() {
     finalScore.textContent = "Your Score is " + secondsLeft;
     console.log(secondsLeft);
     localStorage.setItem("Score", secondsLeft);
-    //cancel timer here //setTime(secondsLeft=0);
+    stopTimer();
     divEl.append(initialsInput);
     document.getElementById('initialsInput');
     initialsInput.placeholder = "Your initials!"
@@ -156,6 +164,8 @@ function score() {
     divEl.append(submitEl);
     submitEl.innerText="submit";
     submitEl.addEventListener('click',collectHS);
+    
+    
         
 
     
@@ -170,8 +180,41 @@ function collectHS() {
     const userInitials = initialsInput.value;
     console.log(userInitials);
     localStorage.setItem("initials", userInitials);
-  }
+     
+    var h1El = document.createElement("h1");
+    var highEl = document.createElement("ul");
+    cardEl.append(h1El);
+    h1El.textContent = "Highscores:"
+    cardEl.append(highEl);
+    highEl.textContent = JSON.stringify("Name: " + userInitials + "  Score: " + secondsLeft);
+  };
+//   Calls init to retrieve highscores and render it to the page on load
 
+//   function renderHS(){
+//     if(lastHS !==null){
+//         highscores =  localStorage.getItem("Score", secondsLeft);
+//         lastUser = localStorage.get.Item("initials", userInitials);
+//         var lastHS = document.createElement ("li");
+//         lastHS.textContent = JSON.stringify("Name: " + userInitials + "  Score: " + secondsLeft);
+//         cardEl.append(lastHS);
+//     } else{
+//         return;
+//     } 
+//   }
+//     submitEl.addEventListener("click", function(event) {
+//     event.preventDefault();
+//     saveHighEl();
+//     renderHS();
+//     });
+  
+
+
+// function init() {
+// //When the init function is executed, the code inside renderLastGrade function will also execute
+//      renderHS();
+//    }
+//    init();
+  
 
 // Initiates quiz upon click of button "Start Quiz"
 buttonEl.addEventListener('click', startGame);
