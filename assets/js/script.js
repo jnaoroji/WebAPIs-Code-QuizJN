@@ -21,7 +21,9 @@ var gameOver = document.createElement("h1");
 var finalScore = document.createElement("h2");
 //create text area element
 var initialsInput = document.createElement("textarea");
-initialsInput.setAttribute("rows", "1");
+initialsInput.setAttribute("rows", "1", );
+initialsInput.setAttribute("style", "width: 200px;", );
+
 var HSlist = document.createElement ("ul");
 var highscores = [];
 var cardEl = document.querySelector("#card");
@@ -61,7 +63,7 @@ function add2(array) {
         divEl.textContent = array[questionIndex].question
         const choices = array[questionIndex].answers
         var listCont = document.createElement("ol");
-        divEl.setAttribute("style", "margin:auto; width:50%; text-align:center; justify-content: center; font-size: 20px; disply:flex; flex-direction: column;");
+        divEl.setAttribute("style", "margin:auto; width:50%; text-align:center; justify-content: center; font-size: 20px;");
         
 
         for (let i = 0; i < choices.length; i++) {
@@ -99,7 +101,7 @@ document.addEventListener('click', function(event){
                 incorrect.style.display = 'none';
             }, 1000);
         }
-        // console.log(rightAnswer, userAnswer, questionIndex);
+       
         questionIndex++;
         add2(questions);
 
@@ -120,7 +122,6 @@ buttonEl.innerText = 'Start Quiz!'
 buttonEl.id = 'startQuizButton'
 //styling for body
 body.setAttribute("style", "margin:auto; width:100%; text-align:center; justify-content: center;");
-
 h1El.setAttribute("style", "font-size:25px; text-align:center;");
 quizEl.setAttribute("style", "font-size:16px; text-align:center;");
 buttonEl.setAttribute("style", "font-size:16px; text-align:center;");
@@ -143,19 +144,18 @@ function setTime() {
     }, 1000);
     return;
 }
-// stop timer
+// stop timer function
 function stopTimer() {
     clearInterval(timerInterval); // clear the interval to stop the timer
     timerEl.textContent = "There is no time left.";
   }
-
+// score function ends the game 
 function score() {
     divEl.append(gameOver);
     gameOver.textContent = "Game Over!"
     divEl.append(finalScore);
     finalScore.textContent = "Your Score is " + secondsLeft;
     console.log(secondsLeft);
-    localStorage.setItem("Score", secondsLeft);
     stopTimer();
     divEl.append(initialsInput);
     document.getElementById('initialsInput');
@@ -163,58 +163,32 @@ function score() {
     initialsInput.value = "";
     divEl.append(submitEl);
     submitEl.innerText="submit";
-    submitEl.addEventListener('click',collectHS);
-    
-    
+    submitEl.addEventListener('click', function() {
+        window.location.href = "index2.html"
+        collectHS(secondsLeft);
+      });
+    // sets local storage 
+      function collectHS(score) { 
+        console.log("Score:", score,);
+        const userInitials = initialsInput.value;
+        console.log(userInitials);
+        var combinedScores = {
+            initials: userInitials,
+            score: secondsLeft
+        }
+        console.log(combinedScores);
+        localStorage.setItem("combined", JSON.stringify(combinedScores));
+      
         
-
-    
-    
+      };
     //styling for game over 
     gameOver.setAttribute("style", "font-size:25px; text-align:center;");
     finalScore.setAttribute("style", "font-size:16px; text-align:center;");
     submitEl.setAttribute("style", "font-size:16px; text-align:center;")
 
 };
-function collectHS() { 
-    const userInitials = initialsInput.value;
-    console.log(userInitials);
-    localStorage.setItem("initials", userInitials);
-     
-    var h1El = document.createElement("h1");
-    var highEl = document.createElement("ul");
-    cardEl.append(h1El);
-    h1El.textContent = "Highscores:"
-    cardEl.append(highEl);
-    highEl.textContent = JSON.stringify("Name: " + userInitials + "  Score: " + secondsLeft);
-  };
-//   Calls init to retrieve highscores and render it to the page on load
-
-//   function renderHS(){
-//     if(lastHS !==null){
-//         highscores =  localStorage.getItem("Score", secondsLeft);
-//         lastUser = localStorage.get.Item("initials", userInitials);
-//         var lastHS = document.createElement ("li");
-//         lastHS.textContent = JSON.stringify("Name: " + userInitials + "  Score: " + secondsLeft);
-//         cardEl.append(lastHS);
-//     } else{
-//         return;
-//     } 
-//   }
-//     submitEl.addEventListener("click", function(event) {
-//     event.preventDefault();
-//     saveHighEl();
-//     renderHS();
-//     });
-  
 
 
-// function init() {
-// //When the init function is executed, the code inside renderLastGrade function will also execute
-//      renderHS();
-//    }
-//    init();
-  
 
 // Initiates quiz upon click of button "Start Quiz"
 buttonEl.addEventListener('click', startGame);

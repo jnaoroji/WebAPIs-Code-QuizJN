@@ -3,6 +3,7 @@
 *::after {
   box-sizing: border-box;
 }
+/* styles the header  */
 header{
   display: flex;
   flex-direction: row;
@@ -11,25 +12,18 @@ header{
   width: 100%;
 
 }
+/*styles the body*/
 body {
   
   font-family: "Roboto", sans-serif;
   background-color: #eff5f8;
   width: 100%;
-  position: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-#divEL{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  
 }
-
-#startQuizButton, button {
-  
-
+/* styles startQuizButton and Play button */
+#startQuizButton, #Play,  button {
   background-color:#001b44;;
   border-radius: 8px;
   color: #fff;
@@ -42,6 +36,7 @@ body {
   text-align: center;
   margin-top: 10px;
 }
+/* styles submit button*/
 #submitEL {
   background-color:#001b44;;
   border-radius: 8px;
@@ -65,25 +60,14 @@ body {
 label {
   color: #212121;
 }
-
-.card{
+/* styles div card for highscores */
+#card{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 100%;
   text-align: center;
   margin: 30px;
   padding:20px;
   
-}
-.output{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 100%;
-  text-align: center;
-  margin: 30px;
-  padding:20px;
 }
