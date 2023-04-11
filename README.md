@@ -10,7 +10,7 @@ I want to build a timed quiz on JavaScript fundamentals that stores high scores.
 
 To play the quiz, click the Start Quiz Button!
 
-You can ghet there by clicking this link to the deployed site: https://jnaoroji.github.io/WebAPIs-Code-QuizJN/
+You can get there by clicking this link to the deployed site: https://jnaoroji.github.io/WebAPIs-Code-QuizJN/
 
 ## Screenshot
 
