@@ -23,6 +23,8 @@ The following image shows my web application's appearance and functionality:
 * https://developer.mozilla.org
 * This gif was used as the predominant guideline for this quiz.
 * ![This Gif was used as the predominant guideline for this quiz.](assets/04-web-apis-homework-demo.gif)
+* used as template for interval timer: file:///Users/jennynaoroji/bootcamp/bootcamp-repo/UADEL-VIRT-FSF-PT-03-2023-U-LOLC/04-Web-APIs/01-Activities/09-Ins_Timers-Intervals/index.html
+* Used as template for index.html and index2.html:file:///Users/jennynaoroji/bootcamp/bootcamp-repo/UADEL-VIRT-FSF-PT-03-2023-U-LOLC/04-Web-APIs/01-Activities/22-Stu_Local-Storage/Solved/index.html
 
 
 
