@@ -1,16 +1,12 @@
+//declares variables
 var HSlist = document.getElementById("HSL");
 var Play = document.getElementById("PlayAgain");
-// var highEl = document.getElementById("testEl");
 var score = "";
 var initials = "";
 var card = document.getElementById("card");
 
 
-
-
-
-//   Calls init to retrieve highscores and render it to the page on load
-
+//renders highscores and styles list 
 function renderHS(){
   var combinedScores = JSON.parse(localStorage.getItem("combined"));
   card.setAttribute("style", "align-content: space-around;")
@@ -19,7 +15,7 @@ function renderHS(){
   Play.setAttribute("style", "font-size:16px; text-align:center; margin: auto; margin-top:10px;");
   return; 
 }
-
+//on click of play button, user can play again
   Play.addEventListener('click', function() {
     window.location.href = "index.html";
   }); 
@@ -32,5 +28,6 @@ function init() {
      renderHS();
      
    }
+//   Calls init to retrieve highscores and render it to the page on load
    init();
   

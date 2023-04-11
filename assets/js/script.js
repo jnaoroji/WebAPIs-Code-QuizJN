@@ -1,20 +1,22 @@
-//define elements
+//defines variables
 var timerEl = document.querySelector("#timer");
 var body = document.body;
 var divEl = document.querySelector("#divEl");
 var h1El = document.createElement("h1");
 var quizEl = document.createElement("div");
-// Create a button element
+// Creates button elements
 var buttonEl = document.createElement("button");
 var submitEl = document.createElement("button");
 // create Question list elements
 var questionIndex = 0;
 var rightAnswer = "";
 var userAnswer = "";
+//creates variables for answer checking
 var correct = document.createElement("p");
 correct.textContent = "Correct!";
 var incorrect = document.createElement("p");
 incorrect.textContent = "Incorrect! 15sec time penalty!";
+//element for timer seconds
 var secondsLeft = 75;
 //create game over elements
 var gameOver = document.createElement("h1");
@@ -24,10 +26,7 @@ var initialsInput = document.createElement("textarea");
 initialsInput.setAttribute("rows", "1", );
 initialsInput.setAttribute("style", "width: 200px;", );
 
-var HSlist = document.createElement ("ul");
-var highscores = [];
-var cardEl = document.querySelector("#card");
-
+// creates an object with all questions, answers and correct answers
 const questions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -55,7 +54,7 @@ const questions = [
         answer: "Console.log"
     },
 ]
-// create a for loop
+// create a for loop to add questions to div element
 function add2(array) {
     divEl.innerHTML="";
     if (questionIndex < array.length) {
@@ -79,10 +78,12 @@ function add2(array) {
         score();
     }
 }
+// starts game by calling set time function and adding questions
 function startGame() {
     setTime();
     add2(questions);
 }
+// adds an event listener to questions on click
 document.addEventListener('click', function(event){
     if (event.target && event.target.matches(".answerItem")) {
         userAnswer = event.target.textContent;
@@ -92,7 +93,6 @@ document.addEventListener('click', function(event){
             setTimeout(function () {
                 correct.style.display = 'none';
             }, 1000);
-
         }else{
             body.append(incorrect);
             incorrect.setAttribute("style", " font-size:16px; text-align:center; font-style: italic; color:black; background: #BDC6D9; padding: 5px; margin-left: 35px;");
@@ -101,16 +101,11 @@ document.addEventListener('click', function(event){
                 incorrect.style.display = 'none';
             }, 1000);
         }
-       
         questionIndex++;
         add2(questions);
-
     }
-
 })
-
-//adds these elements to the body of HTML to start
-
+//adds these elements to the body of HTML on load
 divEl.appendChild(h1El);
 divEl.appendChild(quizEl);
 divEl.appendChild(buttonEl);
@@ -126,6 +121,7 @@ h1El.setAttribute("style", "font-size:25px; text-align:center;");
 quizEl.setAttribute("style", "font-size:16px; text-align:center;");
 buttonEl.setAttribute("style", "font-size:16px; text-align:center;");
 startQuizButton.setAttribute("style", "justify-content:center;");
+//declares timer interval in global scope as used for multiple functions
 var timerInterval = "";
 //set timer
 function setTime() {
@@ -135,19 +131,18 @@ function setTime() {
         timerEl.textContent = "Timer = " + secondsLeft + " seconds left.";
 
         if (secondsLeft <= 0) {
-            // Stops execution of action at set interval
+            // clears timer and div element if timer runs out before all questions are answered
             clearInterval(timerInterval);
             divEl.innerHTML="";
             timerEl.textContent = "Timer = 0 seconds left.";
             score();
         }
-        
     }, 1000);
     return;
 }
 // stop timer function
 function stopTimer() {
-    clearInterval(timerInterval); // clear the interval to stop the timer
+    clearInterval(timerInterval); // clears the interval to stop the timer at game over
     timerEl.textContent = "There is no time left.";
   }
 // score function ends the game 
@@ -173,23 +168,21 @@ function score() {
         console.log("Score:", score,);
         const userInitials = initialsInput.value;
         console.log(userInitials);
+        //creates an object for combined initials and scores
         var combinedScores = {
             initials: userInitials,
             score: secondsLeft
         }
         console.log(combinedScores);
-        localStorage.setItem("combined", JSON.stringify(combinedScores));
-      
-        
+        localStorage.setItem("combined", JSON.stringify(combinedScores)); 
       };
     //styling for game over 
     gameOver.setAttribute("style", "font-size:25px; text-align:center;");
     finalScore.setAttribute("style", "font-size:16px; text-align:center;");
     submitEl.setAttribute("style", "font-size:16px; text-align:center;")
-
 };
 
 
 
-// Initiates quiz upon click of button "Start Quiz"
+// Start game function called upon click of button "Start Quiz"
 buttonEl.addEventListener('click', startGame);
