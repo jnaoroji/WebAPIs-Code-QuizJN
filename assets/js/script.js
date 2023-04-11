@@ -137,6 +137,7 @@ function setTime() {
         if (secondsLeft <= 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
+            divEl.innerHTML="";
             timerEl.textContent = "Timer = 0 seconds left.";
             score();
         }
